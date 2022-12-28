@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="padding: 20px;">
+    <table>
+        <tr><td>Name:</td> <td>{{course.name}}</td></tr>
+        <tr><td>Description:</td> <td>{{course.description.content}}</td></tr>
+    </table>
+    <form action="/add_comment" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="course_id" value="{{course.id}}">
+        <lable>Comment</lable><input type="text" name="comment">
+        <input type="submit" value="Add">
+    </form>
+    <ul>
+        {% for comment in comments %}
+            <li>{{comment.content}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

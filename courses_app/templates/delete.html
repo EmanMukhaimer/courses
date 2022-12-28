@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="padding: 20px;">
+    <h1>Are you sure you want to delete the following course?</h1>
+    <table>
+        <tr><td>Name:</td> <td>{{course.name}}</td></tr>
+        <tr><td>Description:</td> <td>{{course.description}}</td></tr>
+    </table>
+    <div style="display: flex;">
+        <form action="/confirm_destroy" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="yes_no" value="no">
+            <input type="submit" value="No" style="background-color:gray;  border: 1px solid black; box-shadow: black 1px 1px;">
+        </form>
+        <br>
+        <form action="/confirm_destroy" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="yes_no" value="yes">
+            <input type="hidden" name="course_id" value="{{course.id}}">
+            <input type="submit" value="Yes! I want to delete this." style="color: white; background-color:red;  border: 1px solid black; box-shadow: black 1px 1px;">
+        </form>
+    </div>
+</body>
+</html>
